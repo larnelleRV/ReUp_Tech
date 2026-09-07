@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: "github.com/larnelleRV/reuptech-site"
+  repo: "larnelleRV/ReUp_Tech"
   branch: main
 
 media_folder: "images/uploads"
