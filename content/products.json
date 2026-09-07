@@ -1,0 +1,16 @@
+{
+  "products": [
+    { "name": "iPhone 13, 128GB", "price": "R8,999", "category": "Apple", "condition": "Preloved · battery 91%", "image": "", "featured": true },
+    { "name": "iPhone 15, 256GB", "price": "R15,999", "category": "Apple", "condition": "Preloved · battery 97%", "image": "", "featured": true },
+    { "name": "AirPods Pro 2", "price": "R3,799", "category": "Apple", "condition": "New · sealed", "image": "", "featured": true },
+    { "name": "AirPods Max", "price": "R7,299", "category": "Apple", "condition": "Preloved · case included", "image": "", "featured": false },
+    { "name": "Galaxy S23, 256GB", "price": "R9,499", "category": "Samsung", "condition": "Preloved · battery 93%", "image": "", "featured": false },
+    { "name": "Galaxy A54", "price": "R5,299", "category": "Samsung", "condition": "New · sealed", "image": "", "featured": false },
+    { "name": "PS5 Slim, Disc Edition", "price": "R11,499", "category": "PlayStations", "condition": "New · sealed", "image": "", "featured": true },
+    { "name": "PS4 Pro, 1TB Bundle", "price": "R4,999", "category": "PlayStations", "condition": "Preloved · 2 controllers", "image": "", "featured": true },
+    { "name": "Xbox Series S", "price": "R5,999", "category": "Xbox", "condition": "New · sealed", "image": "", "featured": false },
+    { "name": "Xbox Series X", "price": "R8,499", "category": "Xbox", "condition": "Preloved · 1 controller", "image": "", "featured": false },
+    { "name": "Chargers & cables", "price": "From R149", "category": "Other", "condition": "New · various brands", "image": "", "featured": false },
+    { "name": "Cases & screen protectors", "price": "From R99", "category": "Other", "condition": "New · various models", "image": "", "featured": false }
+  ]
+}

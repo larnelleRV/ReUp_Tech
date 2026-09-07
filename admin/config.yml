@@ -1,0 +1,30 @@
+backend:
+  name: github
+  repo: "YOUR-GITHUB-USERNAME/reuptech-site"
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "products"
+    label: "Stock / Products"
+    files:
+      - name: "products"
+        label: "Products List"
+        file: "content/products.json"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.category}} — {{fields.price}}"
+            fields:
+              - { label: "Photo", name: "image", widget: "image", required: false, hint: "Upload a product photo (optional — a placeholder icon shows if left blank)" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string", hint: "e.g. R8,999" }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["Apple", "Samsung", "PlayStations", "Xbox", "Other"]
+              - { label: "Condition", name: "condition", widget: "string", hint: "e.g. Preloved · battery 91%" }
+              - { label: "Show in New Products slider", name: "featured", widget: "boolean", default: false }

@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReUp Tech: Buy & sell PS4/PS5, iPhones & AirPods in Cape Town, Durban & Joburg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--navy: #0A1F44;
+--white: #FFFFFF;
+--black: #14181F;
+--gold: #C9A227;
+--gold-dark: #A9861D;
+--gold-onbox: #E4C767;
+--muted: #55606E;
+--muted-onbox: #B9CBE0;
+--line: rgba(20,24,31,0.14);
+--line-onbox: rgba(255,255,255,0.16);
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; background: var(--white); }
+body{
+margin:0;
+background: var(--white);
+color: var(--black);
+font-family: 'Inter', sans-serif;
+font-size: 16px;
+line-height: 1.55;
+-webkit-font-smoothing: antialiased;
+}
+h1,h2,h3{
+font-family: 'Space Grotesk', sans-serif;
+margin: 0;
+color: var(--black);
+}
+a{ color: inherit; }
+img,svg{ display:block; }
+.wrap{
+max-width: 1120px;
+margin: 0 auto;
+padding: 0 28px;
+}
+
+@media (prefers-reduced-motion: reduce){
+*{ animation: none !important; transition: none !important; }
+}
+
+/* ---------- NAV (solid navy bar) ---------- */
+header{
+position: sticky;
+top: 0;
+z-index: 50;
+background: var(--navy);
+border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+nav.wrap{
+display:flex;
+align-items:center;
+justify-content:space-between;
+height: 72px;
+}
+.logo{
+font-family:'Space Grotesk', sans-serif;
+font-weight:700;
+font-size: 1.25rem;
+letter-spacing: -0.01em;
+display:flex;
+align-items:center;
+gap:10px;
+color: var(--white);
+}
+.logo .mark{
+width: 30px; height: 30px;
+border-radius: 7px;
+background: var(--gold);
+display:flex; align-items:center; justify-content:center;
+color: var(--navy);
+font-weight:700;
+font-size: 0.95rem;
+}
+.navlinks{
+display:flex;
+align-items:center;
+gap: 28px;
+font-size: 0.94rem;
+color: rgba(255,255,255,0.72);
+}
+.navlinks a{ text-decoration:none; transition: color .15s ease; }
+.navlinks a:hover, .navlinks a:focus-visible{ color: var(--white); }
+.nav-cta{
+background: var(--gold);
+color: var(--navy) !important;
+padding: 9px 18px;
+border-radius: 8px;
+font-weight: 600;
+font-size: 0.9rem;
+text-decoration:none;
+white-space: nowrap;
+}
+.nav-cta:hover{ background: var(--gold-dark); }
+.icon-links{ display:flex; gap: 10px; margin-right: 4px; }
+.icon-links a{
+width: 36px; height: 36px;
+border-radius: 50%;
+display:flex; align-items:center; justify-content:center;
+background: rgba(255,255,255,0.08);
+color: var(--white);
+transition: background .15s ease, color .15s ease;
+}
+.icon-links a:hover{ background: var(--gold); color: var(--navy); }
+.icon-links svg{ width: 18px; height: 18px; }
+.nav-right{ display:flex; align-items:center; gap: 14px; }
+
+/* Shop dropdown (desktop) */
+.nav-dropdown{ position:relative; }
+.nav-dropdown-toggle{
+background:none; border:none; cursor:pointer;
+font-family:'Inter', sans-serif;
+font-size: 0.94rem;
+color: rgba(255,255,255,0.72);
+display:flex; align-items:center; gap:5px;
+padding:0;
+}
+.nav-dropdown-toggle:hover, .nav-dropdown:hover .nav-dropdown-toggle{ color: var(--white); }
+.nav-dropdown-toggle svg{ width:13px; height:13px; }
+.nav-dropdown-menu{
+position:absolute;
+top: 100%;
+left: 0;
+margin-top: 14px;
+background: var(--navy);
+border: 1px solid var(--line-onbox);
+border-radius: 10px;
+padding: 8px;
+min-width: 170px;
+opacity:0;
+visibility:hidden;
+transform: translateY(4px);
+transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+box-shadow: 0 20px 40px -20px rgba(20,24,31,0.5);
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu{
+opacity:1; visibility:visible; transform:none;
+}
+.nav-dropdown-menu a{
+display:block;
+padding: 9px 12px;
+border-radius: 6px;
+font-size: 0.92rem;
+color: rgba(255,255,255,0.8);
+}
+.nav-dropdown-menu a:hover{ background: rgba(255,255,255,0.08); color: var(--white); }
+
+/* Hamburger (mobile) */
+.hamburger-btn{
+display:none;
+background:none;
+border:none;
+cursor:pointer;
+padding: 6px;
+color: var(--white);
+}
+.hamburger-btn svg{ width:26px; height:26px; }
+
+.mobile-panel{
+display:none;
+background: var(--navy);
+border-top: 1px solid rgba(255,255,255,0.12);
+padding: 10px 0 20px;
+}
+.mobile-panel a, .mobile-shop-toggle{
+display:block;
+padding: 13px 4px;
+font-size: 1rem;
+color: rgba(255,255,255,0.85);
+text-decoration:none;
+border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.mobile-shop-toggle{
+width:100%; text-align:left;
+background:none; border:none; border-bottom: 1px solid rgba(255,255,255,0.08);
+cursor:pointer;
+font-family:'Inter', sans-serif;
+display:flex; align-items:center; justify-content:space-between;
+}
+.mobile-shop-toggle svg{ width:14px; height:14px; transition: transform .15s ease; }
+.mobile-shop-toggle.open svg{ transform: rotate(180deg); }
+.mobile-shop-list{ display:none; padding-left: 14px; }
+.mobile-shop-list.open{ display:block; }
+.mobile-shop-list a{ border-bottom: none; padding: 10px 4px; font-size: 0.94rem; color: rgba(255,255,255,0.65); }
+.mobile-panel .mobile-icons{
+display:flex; gap: 10px;
+margin-top: 16px;
+}
+.mobile-panel .mobile-icons a{
+padding:0;
+width: 40px; height: 40px;
+border-radius:50%;
+background: rgba(255,255,255,0.08);
+display:flex; align-items:center; justify-content:center;
+border-bottom:none;
+}
+.mobile-panel .mobile-icons svg{ width:19px; height:19px; }
+.mobile-panel .mobile-cta{
+margin-top: 16px;
+display:inline-block;
+background: var(--gold);
+color: var(--navy);
+padding: 12px 20px;
+border-radius: 8px;
+font-weight: 600;
+border-bottom:none;
+}
+
+@media (max-width: 860px){
+.navlinks{ display:none; }
+.icon-links{ display:none; }
+.hamburger-btn{ display:flex; }
+.mobile-panel.open{ display:block; }
+}
+@media (max-width: 480px){
+.nav-cta{ display:none; }
+}
+
+/* ---------- HERO ---------- */
+.hero{
+padding: 84px 0 72px;
+border-bottom: 1px solid var(--line);
+}
+.hero .wrap{
+display:grid;
+grid-template-columns: 1.15fr 0.85fr;
+gap: 56px;
+align-items:center;
+}
+.hero-copy{
+opacity: 0;
+transform: translateY(14px);
+animation: rise .7s ease forwards;
+}
+@keyframes rise{ to{ opacity:1; transform:none; } }
+
+.eyebrow{
+color: var(--gold-dark);
+font-size: 0.95rem;
+font-weight: 600;
+margin-bottom: 18px;
+}
+h1.headline{
+font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+line-height: 1.08;
+font-weight: 700;
+letter-spacing: -0.015em;
+max-width: 15ch;
+}
+.hero p.sub{
+margin-top: 22px;
+color: var(--muted);
+font-size: 1.08rem;
+max-width: 46ch;
+}
+.hero-actions{
+margin-top: 32px;
+display:flex;
+gap: 14px;
+flex-wrap: wrap;
+}
+.btn{
+display:inline-flex;
+align-items:center;
+gap: 9px;
+padding: 13px 22px;
+border-radius: 9px;
+font-weight: 600;
+font-size: 0.96rem;
+text-decoration:none;
+border: 1.5px solid transparent;
+cursor:pointer;
+transition: transform .12s ease, background .15s ease, border-color .15s ease, color .15s ease;
+}
+.btn:active{ transform: scale(0.98); }
+.btn-primary{ background: var(--gold); color: var(--navy); }
+.btn-primary:hover{ background: var(--gold-dark); }
+.btn-ghost{ border-color: var(--black); color: var(--black); }
+.btn-ghost:hover{ border-color: var(--gold-dark); color: var(--gold-dark); }
+
+.hero-visual{
+position:relative;
+aspect-ratio: 1/1;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.device-ring{
+position:relative;
+width: 100%;
+max-width: 380px;
+}
+.device-card{
+position:absolute;
+background: var(--navy);
+border: 1px solid var(--line-onbox);
+border-radius: 16px;
+padding: 18px;
+width: 168px;
+box-shadow: 0 20px 40px -20px rgba(20,24,31,0.35);
+}
+.device-card svg{ width: 34px; height: 34px; color: var(--gold-onbox); }
+.device-card .d-label{ margin-top: 14px; font-weight:600; font-size:0.95rem; color: var(--white); }
+.device-card .d-sub{ color: var(--muted-onbox); font-size: 0.8rem; margin-top: 2px; }
+.device-card.c1{ top: 0; left: 6%; transform: rotate(-4deg); }
+.device-card.c2{ top: 34%; right: 0; transform: rotate(3deg); z-index:2; }
+.device-card.c3{ bottom: 0; left: 18%; transform: rotate(-2deg); }
+@media (max-width: 900px){
+.hero .wrap{ grid-template-columns: 1fr; }
+.hero-visual{ display:none; }
+}
+
+/* ---------- NEW PRODUCTS SLIDER ---------- */
+.slider-wrap{ display:flex; align-items:center; gap: 14px; }
+.slider-track{
+display:flex;
+gap: 20px;
+overflow-x:auto;
+scroll-snap-type: x mandatory;
+scroll-behavior: smooth;
+padding-bottom: 6px;
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+.slider-track::-webkit-scrollbar{ display:none; }
+.product-card{
+scroll-snap-align: start;
+flex: 0 0 250px;
+background: var(--navy);
+border: 1px solid var(--line-onbox);
+border-radius: 14px;
+padding: 24px;
+}
+.product-card svg{ width: 32px; height: 32px; color: var(--gold-onbox); margin-bottom: 16px; }
+.product-card img{ width:100%; height:140px; object-fit:cover; border-radius:8px; margin-bottom:14px; display:block; }
+.product-card h3{ font-size: 1.05rem; font-weight: 600; color: var(--white); }
+.product-card .price{ color: var(--gold-onbox); font-weight: 700; margin-top: 8px; font-size: 1.1rem; }
+.product-card .cond{ color: var(--muted-onbox); font-size: 0.85rem; margin-top: 4px; }
+.slider-btn{
+flex: none;
+width: 40px; height: 40px;
+border-radius: 50%;
+border: 1.5px solid var(--black);
+background: var(--white);
+cursor:pointer;
+display:flex; align-items:center; justify-content:center;
+font-size: 1.1rem;
+transition: border-color .15s ease, color .15s ease;
+}
+.slider-btn:hover{ border-color: var(--gold-dark); color: var(--gold-dark); }
+@media (max-width: 640px){ .slider-btn{ display:none; } }
+
+/* ---------- SHOP BY CATEGORY ---------- */
+.shop-category{ margin-bottom: 48px; scroll-margin-top: 90px; }
+.shop-category:last-child{ margin-bottom: 0; }
+.shop-category h3{
+font-size: 1.2rem;
+font-weight: 600;
+padding-bottom: 14px;
+border-bottom: 1px solid var(--line);
+margin-bottom: 20px;
+}
+.shop-grid{
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+@media (max-width: 780px){ .shop-grid{ grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px){ .shop-grid{ grid-template-columns: 1fr; } }
+
+/* ---------- SECTION HEADS ---------- */
+section{ padding: 76px 0; border-bottom: 1px solid var(--line); }
+.section-head{ max-width: 56ch; margin-bottom: 44px; }
+.section-head h2{
+font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+letter-spacing: -0.01em;
+}
+.section-head p{ color: var(--muted); margin-top: 12px; font-size: 1.02rem; }
+
+/* ---------- CATEGORIES (navy boxes, white text) ---------- */
+.cat-grid{
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+.cat-card{
+background: var(--navy);
+border: 1px solid var(--line-onbox);
+border-radius: 14px;
+padding: 28px 24px;
+transition: transform .15s ease;
+}
+.cat-card:hover{ transform: translateY(-3px); }
+.cat-card svg{ width: 30px; height: 30px; color: var(--gold-onbox); margin-bottom: 18px; }
+.cat-card h3{ font-size: 1.15rem; font-weight: 600; color: var(--white); }
+.cat-card p{ color: var(--muted-onbox); margin-top: 8px; font-size: 0.94rem; }
+@media (max-width: 780px){ .cat-grid{ grid-template-columns: 1fr; } }
+
+/* ---------- HOW IT WORKS ---------- */
+.tracks{
+display:grid;
+grid-template-columns: 1fr 1fr;
+gap: 40px;
+}
+.track h3{
+font-size: 1.3rem;
+padding-bottom: 16px;
+border-bottom: 1px solid var(--line);
+margin-bottom: 24px;
+}
+.step{
+display:flex;
+gap: 16px;
+margin-bottom: 22px;
+}
+.step:last-child{ margin-bottom:0; }
+.step-num{
+flex: none;
+width: 30px; height: 30px;
+border-radius: 50%;
+border: 1.5px solid var(--gold);
+color: var(--gold-dark);
+font-size: 0.85rem;
+font-weight: 700;
+display:flex; align-items:center; justify-content:center;
+}
+.step-text strong{ display:block; font-size: 0.98rem; color: var(--black); font-weight: 600; }
+.step-text span{ color: var(--muted); font-size: 0.92rem; }
+@media (max-width: 780px){ .tracks{ grid-template-columns: 1fr; gap: 44px; } }
+
+/* ---------- CITIES ---------- */
+.cities{
+display:grid;
+grid-template-columns: 1.1fr 0.9fr;
+gap: 48px;
+align-items:center;
+}
+.city-list{ display:flex; flex-direction:column; gap: 0; }
+.city-row{
+display:flex;
+justify-content:space-between;
+align-items:baseline;
+padding: 18px 0;
+border-bottom: 1px solid var(--line);
+}
+.city-row:first-child{ padding-top:0; }
+.city-row .name{ font-family:'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight:600; color: var(--black); }
+.city-row .tag{ color: var(--gold-dark); font-size: 0.88rem; font-weight: 600; }
+.city-row .note{ color: var(--muted); font-size: 0.88rem; margin-top: 4px; }
+.map-card{
+background: var(--navy);
+border: 1px solid var(--line-onbox);
+border-radius: 16px;
+padding: 30px;
+}
+.map-card svg{ width: 100%; height: auto; color: var(--gold-onbox); }
+@media (max-width: 780px){ .cities{ grid-template-columns: 1fr; } .map-card{ order:-1; max-width: 280px; margin: 0 auto; } }
+
+/* ---------- TRUST (navy boxes, white text) ---------- */
+.trust-grid{
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+.trust-item{
+background: var(--navy);
+border: 1px solid var(--line-onbox);
+border-radius: 14px;
+padding: 26px 24px;
+}
+.trust-item strong{ display:block; font-size: 1.05rem; margin-bottom: 8px; color: var(--white); }
+.trust-item p{ color: var(--muted-onbox); font-size: 0.95rem; }
+@media (max-width: 780px){ .trust-grid{ grid-template-columns: 1fr; } }
+
+/* ---------- CTA BAND (navy box, white text) ---------- */
+.cta-band{
+border-bottom: none;
+text-align:center;
+}
+.cta-band .inner{
+background: var(--navy);
+border-radius: 20px;
+padding: 56px 40px;
+}
+.cta-band h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); max-width: 20ch; margin: 0 auto; color: var(--white); }
+.cta-band p{ color: var(--muted-onbox); margin-top: 14px; }
+.cta-band .hero-actions{ justify-content:center; margin-top: 30px; }
+.cta-band .btn-ghost{ border-color: rgba(255,255,255,0.55); color: var(--white); }
+.cta-band .btn-ghost:hover{ border-color: var(--gold); color: var(--gold); }
+
+/* ---------- FOOTER ---------- */
+footer{ padding: 44px 0; }
+footer .wrap{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap: wrap;
+gap: 16px;
+}
+footer .foot-left{ color: var(--muted); font-size: 0.88rem; }
+footer .foot-links{ display:flex; gap: 22px; font-size: 0.88rem; }
+footer .foot-links a{ text-decoration:none; color: var(--muted); transition: color .15s ease; }
+footer .foot-links a:hover{ color: var(--gold-dark); }
+
+:focus-visible{ outline: 2px solid var(--gold-dark); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+<nav class="wrap">
+<div class="logo"><span class="mark">R&uarr;</span>ReUp Tech</div>
+<div class="navlinks">
+<a href="#new-products">New products</a>
+<div class="nav-dropdown">
+<button class="nav-dropdown-toggle" aria-haspopup="true">Shop
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<div class="nav-dropdown-menu">
+<a href="#shop-apple">Apple</a>
+<a href="#shop-samsung">Samsung</a>
+<a href="#shop-playstations">PlayStations</a>
+<a href="#shop-xbox">Xbox</a>
+<a href="#shop-other">Other</a>
+</div>
+</div>
+<a href="#how">How it works</a>
+<a href="#cities">Cities</a>
+<a href="#trust">Why us</a>
+</div>
+<div class="nav-right">
+<div class="icon-links">
+<a href="https://wa.me/27606456066" target="_blank" rel="noopener" aria-label="WhatsApp">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3C7 3 3 6.6 3 11c0 2.1.9 4 2.4 5.4L4 21l4.9-1.3A9.6 9.6 0 0 0 12 20c5 0 9-4 9-9s-4-8-9-8Z"/><path d="M8.5 9.8c0 3.5 2.7 6.2 6.2 6.2" stroke-linecap="round"/></svg>
+</a>
+<a href="https://www.instagram.com/reup_tech/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+</a>
+</div>
+<a class="nav-cta" href="https://wa.me/27606456066" target="_blank" rel="noopener">Message us</a>
+<button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+</button>
+</div>
+</nav>
+<div class="mobile-panel" id="mobilePanel">
+<div class="wrap">
+<a href="#new-products">New products</a>
+<button class="mobile-shop-toggle" id="mobileShopToggle">Shop
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<div class="mobile-shop-list" id="mobileShopList">
+<a href="#shop-apple">Apple</a>
+<a href="#shop-samsung">Samsung</a>
+<a href="#shop-playstations">PlayStations</a>
+<a href="#shop-xbox">Xbox</a>
+<a href="#shop-other">Other</a>
+</div>
+<a href="#how">How it works</a>
+<a href="#cities">Cities</a>
+<a href="#trust">Why us</a>
+<a href="#faqs">FAQ's</a>
+<div class="mobile-icons">
+<a href="https://wa.me/27606456066" target="_blank" rel="noopener" aria-label="WhatsApp">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3C7 3 3 6.6 3 11c0 2.1.9 4 2.4 5.4L4 21l4.9-1.3A9.6 9.6 0 0 0 12 20c5 0 9-4 9-9s-4-8-9-8Z"/><path d="M8.5 9.8c0 3.5 2.7 6.2 6.2 6.2" stroke-linecap="round"/></svg>
+</a>
+<a href="https://www.instagram.com/reup_tech/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+</a>
+</div>
+<a class="mobile-cta" href="https://wa.me/27606456066" target="_blank" rel="noopener">Message us</a>
+</div>
+</div>
+</header>
+
+<section class="hero">
+<div class="wrap">
+<div class="hero-copy">
+<div class="eyebrow">Cape Town &middot; Durban &middot; Johannesburg</div>
+<h1 class="headline">New or preloved. Either way, it's checked properly.</h1>
+<p class="sub">We buy and sell PS4s, PS5s, iPhones and Apple headphones, brand new and secondhand, priced fairly and delivered wherever you are.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://wa.me/27606456066" target="_blank" rel="noopener">Sell your device</a>
+<a class="btn btn-ghost" href="https://www.instagram.com/reup_tech/?hl=en" target="_blank" rel="noopener">See what's in stock</a>
+</div>
+</div>
+<div class="hero-visual">
+<div class="device-ring">
+<div class="device-card c1">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="6" y1="18" x2="18" y2="18"/></svg>
+<div class="d-label">iPhone</div>
+<div class="d-sub">All models, unlocked</div>
+</div>
+<div class="device-card c2">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 15c0-3 2-8 8-8s8 5 8 8-2 4-4 4-2-2-4-2-2 2-4 2-4-1-4-4Z"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/></svg>
+<div class="d-label">PS4 / PS5</div>
+<div class="d-sub">Consoles & bundles</div>
+</div>
+<div class="device-card c3">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2" y="13" width="5" height="7" rx="1.5"/><rect x="17" y="13" width="5" height="7" rx="1.5"/></svg>
+<div class="d-label">AirPods</div>
+<div class="d-sub">Pro & Max too</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="new-products">
+<div class="wrap">
+<div class="section-head">
+<h2>New products</h2>
+<p>The latest stock in, updated regularly. Swipe or use the arrows to see more.</p>
+</div>
+<div class="slider-wrap">
+<button class="slider-btn prev" id="sliderPrev" aria-label="Previous products">&larr;</button>
+<div class="slider-track" id="productSlider">
+<!-- filled automatically from content/products.json -->
+</div>
+<button class="slider-btn next" id="sliderNext" aria-label="Next products">&rarr;</button>
+</div>
+</div>
+</section>
+
+<section id="shop">
+<div class="wrap">
+<div class="section-head">
+<h2>Shop by category</h2>
+<p>Browse what we've got by brand. New and preloved options in every category.</p>
+</div>
+
+<div class="shop-category" id="shop-apple">
+<h3>Apple</h3>
+<div class="shop-grid" id="shop-grid-apple"></div>
+</div>
+
+<div class="shop-category" id="shop-samsung">
+<h3>Samsung</h3>
+<div class="shop-grid" id="shop-grid-samsung"></div>
+</div>
+
+<div class="shop-category" id="shop-playstations">
+<h3>PlayStations</h3>
+<div class="shop-grid" id="shop-grid-playstations"></div>
+</div>
+
+<div class="shop-category" id="shop-xbox">
+<h3>Xbox</h3>
+<div class="shop-grid" id="shop-grid-xbox"></div>
+</div>
+
+<div class="shop-category" id="shop-other">
+<h3>Other</h3>
+<div class="shop-grid" id="shop-grid-other"></div>
+</div>
+</div>
+</section>
+
+<section id="what">
+<div class="wrap">
+<div class="section-head">
+<h2>What we trade</h2>
+<p>New and secondhand, across three categories, checked properly every time so there are no surprises after you've paid.</p>
+</div>
+<div class="cat-grid">
+<div class="cat-card">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 15c0-3 2-8 8-8s8 5 8 8-2 4-4 4-2-2-4-2-2 2-4 2-4-1-4-4Z"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/></svg>
+<h3>PlayStation 4 & 5</h3>
+<p>Consoles, controllers, and full bundles. Sealed new stock or tested preloved units, always clearly labelled which is which.</p>
+</div>
+<div class="cat-card">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="6" y1="18" x2="18" y2="18"/></svg>
+<h3>iPhones</h3>
+<p>Unlocked, all models, new or secondhand. On used units we check battery health, screen, cameras and buttons, and tell you exactly what we find.</p>
+</div>
+<div class="cat-card">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2" y="13" width="5" height="7" rx="1.5"/><rect x="17" y="13" width="5" height="7" rx="1.5"/></svg>
+<h3>Apple headphones</h3>
+<p>AirPods, AirPods Pro and AirPods Max, new sealed or preloved. Case, tips and charge tested on anything used.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="how">
+<div class="wrap">
+<div class="section-head">
+<h2>How it works</h2>
+<p>Whether you're selling to us or buying from us, it's a short conversation, not a form.</p>
+</div>
+<div class="tracks">
+<div class="track">
+<h3>Selling to us</h3>
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-text"><strong>Send photos and details</strong><span>Over WhatsApp or Instagram DM: condition, accessories, storage size.</span></div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-text"><strong>Get a fair quote same day</strong><span>No lowballing, no waiting around for a reply.</span></div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-text"><strong>Drop off or courier it in</strong><span>Get paid on collection, or as soon as it's checked in.</span></div>
+</div>
+</div>
+<div class="track">
+<h3>Buying from us</h3>
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-text"><strong>Browse what's in stock</strong><span>Updated regularly on Instagram with real photos and prices.</span></div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-text"><strong>Ask us anything</strong><span>Battery health, warranty on the item, whatever you need to know.</span></div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-text"><strong>Collect or get it couriered</strong><span>Free within 30km of Bloubergstrand, or delivery to Durban and Johannesburg.</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="cities">
+<div class="wrap cities">
+<div>
+<div class="section-head" style="margin-bottom:8px;">
+<h2>Based in Bloubergstrand, Cape Town. Selling nationwide.</h2>
+<p>Every device is checked in person here before it travels anywhere.</p>
+</div>
+<div class="city-list">
+<div class="city-row">
+<div><div class="name">Cape Town</div><div class="note">Free collection or delivery within 30km of Bloubergstrand</div></div>
+<div class="tag">Home base</div>
+</div>
+<div class="city-row">
+<div><div class="name">Johannesburg</div><div class="note">Couriered, usually 2 to 3 working days</div></div>
+<div class="tag">We deliver</div>
+</div>
+<div class="city-row">
+<div><div class="name">Durban</div><div class="note">Couriered, usually 2 to 3 working days</div></div>
+<div class="tag">We deliver</div>
+</div>
+</div>
+</div>
+<div class="map-card">
+<svg viewBox="0 0 200 220" fill="none">
+<circle cx="60" cy="170" r="5" fill="currentColor"/>
+<circle cx="150" cy="60" r="5" fill="currentColor"/>
+<circle cx="150" cy="140" r="5" fill="currentColor"/>
+<path d="M60 170 L150 60" stroke="currentColor" stroke-width="1" stroke-dasharray="4 5" opacity="0.5"/>
+<path d="M60 170 L150 140" stroke="currentColor" stroke-width="1" stroke-dasharray="4 5" opacity="0.5"/>
+<text x="20" y="195" fill="#FFFFFF" font-family="Inter" font-size="11">Bloubergstrand</text>
+<text x="120" y="48" fill="#FFFFFF" font-family="Inter" font-size="11">Johannesburg</text>
+<text x="120" y="160" fill="#FFFFFF" font-family="Inter" font-size="11">Durban</text>
+</svg>
+</div>
+</div>
+</section>
+
+<section id="trust">
+<div class="wrap">
+<div class="section-head">
+<h2>Why people trust us with their money</h2>
+</div>
+<div class="trust-grid">
+<div class="trust-item">
+<strong>Everything is checked, not assumed</strong>
+<p>New stock verified sealed and genuine. Preloved gear tested end to end: battery, screen, ports, buttons.</p>
+</div>
+<div class="trust-item">
+<strong>You're talking to us, not a call centre</strong>
+<p>We're two people, not a warehouse. Every message and every deal goes through us directly.</p>
+</div>
+<div class="trust-item">
+<strong>Fair prices, both ways</strong>
+<p>We've been the person who overpaid for "mint condition" too, so that's not how we price things.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cta-band">
+<div class="wrap">
+<div class="inner">
+<h2>Got a device to sell, or looking for one?</h2>
+<p>Send us a message. Most quotes and questions get answered the same day.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="https://wa.me/27606456066" target="_blank" rel="noopener">Chat on WhatsApp</a>
+<a class="btn btn-ghost" href="https://www.instagram.com/reup_tech/?hl=en" target="_blank" rel="noopener">Follow on Instagram</a>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="wrap">
+<div class="foot-left">ReUp Tech, Bloubergstrand, Cape Town</div>
+<div class="foot-links">
+<a href="https://www.instagram.com/reup_tech/?hl=en" target="_blank" rel="noopener">Instagram</a>
+<a href="https://wa.me/27606456066" target="_blank" rel="noopener">WhatsApp</a>
+<a href="mailto:hello@reuptech.co.za">Email</a>
+<a href="#faqs">FAQ's</a>
+</div>
+</div>
+</footer>
+
+<script>
+(function(){
+var track = document.getElementById('productSlider');
+var prev = document.getElementById('sliderPrev');
+var next = document.getElementById('sliderNext');
+if(track && prev && next){
+var scrollAmount = 270;
+prev.addEventListener('click', function(){ track.scrollBy({left: -scrollAmount, behavior: 'smooth'}); });
+next.addEventListener('click', function(){ track.scrollBy({left: scrollAmount, behavior: 'smooth'}); });
+}
+
+var hamburger = document.getElementById('hamburgerBtn');
+var panel = document.getElementById('mobilePanel');
+if(hamburger && panel){
+hamburger.addEventListener('click', function(){
+var isOpen = panel.classList.toggle('open');
+hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+panel.querySelectorAll('a').forEach(function(link){
+link.addEventListener('click', function(){
+panel.classList.remove('open');
+hamburger.setAttribute('aria-expanded', 'false');
+});
+});
+}
+
+var mobileShopToggle = document.getElementById('mobileShopToggle');
+var mobileShopList = document.getElementById('mobileShopList');
+if(mobileShopToggle && mobileShopList){
+mobileShopToggle.addEventListener('click', function(){
+mobileShopToggle.classList.toggle('open');
+mobileShopList.classList.toggle('open');
+});
+}
+
+/* ---- Load stock from content/products.json (edited via /admin) ---- */
+function escapeHTML(str){
+return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+});
+}
+function fallbackIconSVG(){
+return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg>';
+}
+function productCardHTML(p){
+var media = p.image ? '<img src="' + escapeHTML(p.image) + '" alt="' + escapeHTML(p.name) + '">' : fallbackIconSVG();
+return '<div class="product-card">' + media +
+'<h3>' + escapeHTML(p.name) + '</h3>' +
+'<div class="price">' + escapeHTML(p.price) + '</div>' +
+'<div class="cond">' + escapeHTML(p.condition) + '</div>' +
+'</div>';
+}
+fetch('/content/products.json', { cache: 'no-store' })
+.then(function(res){ return res.json(); })
+.then(function(data){
+var products = (data && data.products) || [];
+
+var slider = document.getElementById('productSlider');
+if(slider){
+var featured = products.filter(function(p){ return p.featured; });
+if(featured.length === 0) featured = products;
+slider.innerHTML = featured.slice(0, 6).map(productCardHTML).join('') ||
+'<p style="color:var(--muted-onbox);">No products yet — add some in the stock manager.</p>';
+}
+
+var categoryToGridId = {
+'Apple': 'shop-grid-apple',
+'Samsung': 'shop-grid-samsung',
+'PlayStations': 'shop-grid-playstations',
+'Xbox': 'shop-grid-xbox',
+'Other': 'shop-grid-other'
+};
+Object.keys(categoryToGridId).forEach(function(cat){
+var grid = document.getElementById(categoryToGridId[cat]);
+if(!grid) return;
+var items = products.filter(function(p){ return p.category === cat; });
+grid.innerHTML = items.map(productCardHTML).join('') ||
+'<p style="color:var(--muted);">No stock in this category right now.</p>';
+});
+})
+.catch(function(err){ console.error('Could not load products.json', err); });
+})();
+</script>
+
+</body>
+</html>
