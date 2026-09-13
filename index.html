@@ -498,6 +498,37 @@ padding: 56px 40px;
 .cta-band .btn-ghost{ border-color: rgba(255,255,255,0.55); color: var(--white); }
 .cta-band .btn-ghost:hover{ border-color: var(--gold); color: var(--gold); }
 
+/* ---------- FAQ ---------- */
+.faq-list{ max-width: 74ch; }
+.faq-item{ border-bottom: 1px solid var(--line); }
+.faq-item summary{
+cursor:pointer;
+padding: 22px 0;
+font-weight: 600;
+font-size: 1.05rem;
+color: var(--black);
+list-style:none;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap: 20px;
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary::after{
+content:'+';
+flex:none;
+font-size: 1.4rem;
+color: var(--gold-dark);
+font-weight:400;
+}
+.faq-item[open] summary::after{ content:'\2212'; }
+.faq-item .faq-answer{
+padding: 0 0 22px;
+color: var(--muted);
+font-size: 0.98rem;
+line-height: 1.6;
+}
+
 /* ---------- FOOTER ---------- */
 footer{ padding: 44px 0; }
 footer .wrap{
@@ -823,6 +854,45 @@ footer .foot-links a:hover{ color: var(--gold-dark); }
 <strong>Fair prices, both ways</strong>
 <p>We've been the person who overpaid for "mint condition" too, so that's not how we price things.</p>
 </div>
+</div>
+</div>
+</section>
+
+<section id="faqs">
+<div class="wrap">
+<div class="section-head">
+<h2>Frequently asked questions</h2>
+<p>Everything people usually ask before buying or selling with us.</p>
+</div>
+<div class="faq-list">
+<details class="faq-item">
+<summary>What do you buy and sell?</summary>
+<div class="faq-answer">PS4s, PS5s, iPhones, and Apple headphones (AirPods, AirPods Pro, AirPods Max) &mdash; both brand new and secondhand.</div>
+</details>
+<details class="faq-item">
+<summary>How do I sell my device to you?</summary>
+<div class="faq-answer">Send us photos and details over WhatsApp or Instagram DM (condition, accessories, storage size). We'll give you a fair quote the same day, then you drop it off or courier it in and get paid on collection or once it's checked in.</div>
+</details>
+<details class="faq-item">
+<summary>Is secondhand stock actually checked?</summary>
+<div class="faq-answer">Yes. Every used item is tested before it's sold &mdash; battery health, screen, ports, buttons &mdash; so there are no surprises after you've paid.</div>
+</details>
+<details class="faq-item">
+<summary>How does payment work?</summary>
+<div class="faq-answer">In Cape Town, you can pay cash on delivery/collection or by EFT. For Durban and Johannesburg, payment is by EFT only, and products are shipped once your payment reflects after we receive proof of payment.</div>
+</details>
+<details class="faq-item">
+<summary>Do you deliver outside Cape Town?</summary>
+<div class="faq-answer">Yes &mdash; we courier to Durban and Johannesburg, usually within 2 to 3 working days. Cape Town collection/delivery is free within 30km of Bloubergstrand.</div>
+</details>
+<details class="faq-item">
+<summary>Is there a warranty on preloved items?</summary>
+<div class="faq-answer">We're happy to answer questions about a specific item's condition and any warranty before you buy &mdash; just ask us on WhatsApp or Instagram.</div>
+</details>
+<details class="faq-item">
+<summary>How do I know what's currently in stock?</summary>
+<div class="faq-answer">Check the "New products" and "Shop by category" sections on this site, or follow us on Instagram, where stock is updated regularly with real photos and prices.</div>
+</details>
 </div>
 </div>
 </section>
