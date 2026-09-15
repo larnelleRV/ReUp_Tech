@@ -360,16 +360,22 @@ box-shadow: 0 16px 32px -18px rgba(0,0,0,0.5);
 .product-card .cond{ color: var(--muted-onbox); font-size: 0.85rem; margin-top: 4px; }
 .product-badge{
 position:absolute;
-top: 14px; right: 14px;
-background: rgba(20,24,31,0.55);
+top: 16px; right: 16px;
+max-width: calc(100% - 32px);
+background: rgba(10,31,68,0.85);
+border: 1px solid rgba(255,255,255,0.25);
 color: var(--gold-onbox);
-font-size: 0.72rem;
+font-size: 0.7rem;
 font-weight: 700;
-letter-spacing: 0.02em;
-padding: 4px 9px;
+letter-spacing: 0.03em;
+text-transform: uppercase;
+padding: 5px 11px;
 border-radius: 20px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
-.product-badge.sold{ background: rgba(192,57,43,0.85); color: var(--white); }
+.product-badge.sold{ background: rgba(192,57,43,0.9); border-color: rgba(255,255,255,0.3); color: var(--white); }
 .product-card-actions{
 display:flex;
 gap: 8px;
@@ -1201,6 +1207,16 @@ return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
 return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
 });
 }
+function formatPrice(raw){
+if(raw == null) return '';
+var trimmed = String(raw).trim();
+if(/^[0-9][0-9\s,]*$/.test(trimmed)){
+var digits = trimmed.replace(/[^0-9]/g, '');
+var withSpaces = digits.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+return 'R' + withSpaces;
+}
+return trimmed;
+}
 function fallbackIconSVG(){
 return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg>';
 }
@@ -1213,12 +1229,12 @@ return { text: 'Preloved', sold: false };
 function productCardHTML(p){
 var media = p.image ? '<img src="' + escapeHTML(p.image) + '" alt="' + escapeHTML(p.name) + '">' : fallbackIconSVG();
 var badge = badgeFor(p);
-var waMsg = encodeURIComponent('Hi, I\'m interested in the ' + (p.name || 'item') + ' listed for ' + (p.price || '') + '.');
+var waMsg = encodeURIComponent('Hi, I\'m interested in the ' + (p.name || 'item') + ' listed for ' + (formatPrice(p.price) || '') + '.');
 return '<div class="product-card" data-idx="' + p.__idx + '">' +
 '<span class="product-badge' + (badge.sold ? ' sold' : '') + '">' + escapeHTML(badge.text) + '</span>' +
 media +
 '<h3>' + escapeHTML(p.name) + '</h3>' +
-'<div class="price">' + escapeHTML(p.price) + '</div>' +
+'<div class="price">' + escapeHTML(formatPrice(p.price)) + '</div>' +
 '<div class="cond">' + escapeHTML(p.condition) + '</div>' +
 '<div class="product-card-actions">' +
 '<button class="pc-view" type="button">View</button>' +
@@ -1250,7 +1266,7 @@ document.getElementById('productModalName').textContent = p.name || '';
 var specsEl = document.getElementById('productModalSpecs');
 specsEl.textContent = p.specs || '';
 specsEl.style.display = p.specs ? '' : 'none';
-document.getElementById('productModalPrice').textContent = p.price || '';
+document.getElementById('productModalPrice').textContent = formatPrice(p.price) || '';
 
 var statusEl = document.getElementById('productModalStatus');
 var status = p.status || 'Available';
@@ -1286,7 +1302,7 @@ addList.innerHTML = p.additionalInfo.split('\n').filter(function(l){ return l.tr
 addWrap.style.display = 'none';
 }
 
-var waMsg = encodeURIComponent('Hi, I\'m interested in the ' + (p.name || 'item') + ' listed for ' + (p.price || '') + '.');
+var waMsg = encodeURIComponent('Hi, I\'m interested in the ' + (p.name || 'item') + ' listed for ' + (formatPrice(p.price) || '') + '.');
 document.getElementById('productModalWhatsApp').href = 'https://wa.me/27608767629?text=' + waMsg;
 
 var imgs = galleryImagesFor(p);
