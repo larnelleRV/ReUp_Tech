@@ -343,12 +343,59 @@ background: var(--navy);
 border: 1px solid var(--line-onbox);
 border-radius: 14px;
 padding: 24px;
+position:relative;
+transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
+.product-card:hover{
+transform: translateY(-4px);
+border-color: var(--gold);
+box-shadow: 0 16px 32px -18px rgba(0,0,0,0.5);
+}
+.product-card img{ transition: transform .25s ease; }
+.product-card:hover img{ transform: scale(1.03); }
 .product-card svg{ width: 32px; height: 32px; color: var(--gold-onbox); margin-bottom: 16px; }
 .product-card img{ width:100%; height:140px; object-fit:cover; border-radius:8px; margin-bottom:14px; display:block; }
 .product-card h3{ font-size: 1.05rem; font-weight: 600; color: var(--white); }
 .product-card .price{ color: var(--gold-onbox); font-weight: 700; margin-top: 8px; font-size: 1.1rem; }
 .product-card .cond{ color: var(--muted-onbox); font-size: 0.85rem; margin-top: 4px; }
+.product-badge{
+position:absolute;
+top: 14px; right: 14px;
+background: rgba(20,24,31,0.55);
+color: var(--gold-onbox);
+font-size: 0.72rem;
+font-weight: 700;
+letter-spacing: 0.02em;
+padding: 4px 9px;
+border-radius: 20px;
+}
+.product-badge.sold{ background: rgba(192,57,43,0.85); color: var(--white); }
+.product-card-actions{
+display:flex;
+gap: 8px;
+margin-top: 14px;
+}
+.pc-view, .pc-enquire{
+flex:1;
+text-align:center;
+font-size: 0.86rem;
+font-weight: 600;
+padding: 9px 0;
+border-radius: 7px;
+text-decoration:none;
+cursor:pointer;
+}
+.pc-view{
+background: rgba(255,255,255,0.08);
+color: var(--white);
+border: none;
+}
+.pc-view:hover{ background: rgba(255,255,255,0.15); }
+.pc-enquire{
+background: var(--gold);
+color: var(--navy);
+}
+.pc-enquire:hover{ background: var(--gold-dark); }
 .slider-btn{
 flex: none;
 width: 40px; height: 40px;
@@ -472,7 +519,7 @@ padding: 30px;
 /* ---------- TRUST (navy boxes, white text) ---------- */
 .trust-grid{
 display:grid;
-grid-template-columns: repeat(3, 1fr);
+grid-template-columns: repeat(4, 1fr);
 gap: 20px;
 }
 .trust-item{
@@ -483,7 +530,8 @@ padding: 26px 24px;
 }
 .trust-item strong{ display:block; font-size: 1.05rem; margin-bottom: 8px; color: var(--white); }
 .trust-item p{ color: var(--muted-onbox); font-size: 0.95rem; }
-@media (max-width: 780px){ .trust-grid{ grid-template-columns: 1fr; } }
+@media (max-width: 980px){ .trust-grid{ grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px){ .trust-grid{ grid-template-columns: 1fr; } }
 
 /* ---------- CTA BAND (navy box, white text) ---------- */
 .cta-band{
@@ -500,6 +548,144 @@ padding: 56px 40px;
 .cta-band .hero-actions{ justify-content:center; margin-top: 30px; }
 .cta-band .btn-ghost{ border-color: rgba(255,255,255,0.55); color: var(--white); }
 .cta-band .btn-ghost:hover{ border-color: var(--gold); color: var(--gold); }
+
+/* ---------- PRODUCT DETAIL MODAL ---------- */
+.product-card{ cursor:pointer; }
+.product-modal-overlay{
+display:none;
+position:fixed;
+inset:0;
+background: rgba(10,31,68,0.65);
+z-index: 200;
+padding: 24px;
+overflow-y:auto;
+}
+.product-modal-overlay.open{ display:flex; align-items:flex-start; justify-content:center; }
+.product-modal{
+background: var(--white);
+border-radius: 18px;
+max-width: 920px;
+width: 100%;
+margin: 40px auto;
+position:relative;
+padding: 32px;
+box-shadow: 0 30px 60px -20px rgba(0,0,0,0.4);
+}
+.product-modal-close{
+position:absolute;
+top: 18px; right: 18px;
+width: 36px; height: 36px;
+border-radius: 50%;
+border: none;
+background: rgba(20,24,31,0.06);
+font-size: 1.3rem;
+line-height:1;
+cursor:pointer;
+color: var(--black);
+}
+.product-modal-close:hover{ background: rgba(20,24,31,0.12); }
+.product-modal-grid{
+display:grid;
+grid-template-columns: 1.1fr 1fr;
+gap: 36px;
+}
+.product-modal-main-image{
+width:100%;
+aspect-ratio: 1/1;
+background: #f1f2f5;
+border-radius: 14px;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.product-modal-main-image img{ width:100%; height:100%; object-fit:cover; }
+.product-modal-main-image svg{ width:64px; height:64px; color: var(--gold-dark); }
+.product-modal-thumbs{
+display:flex;
+gap: 10px;
+margin-top: 12px;
+flex-wrap:wrap;
+}
+.product-modal-thumbs img{
+width: 64px; height: 64px;
+object-fit:cover;
+border-radius: 8px;
+cursor:pointer;
+border: 2px solid transparent;
+}
+.product-modal-thumbs img.active{ border-color: var(--gold); }
+.product-modal-info h2{ font-size: 1.5rem; margin-bottom: 4px; }
+.product-modal-specs{ color: var(--muted); font-size: 0.98rem; margin-bottom: 18px; }
+.product-modal-pricebox{
+background: #f6f7f9;
+border-radius: 12px;
+padding: 20px;
+margin-bottom: 18px;
+}
+.product-modal-price{ font-size: 1.7rem; font-weight: 700; margin-bottom: 14px; }
+.product-modal-row{
+display:flex;
+justify-content:space-between;
+padding: 7px 0;
+font-size: 0.94rem;
+border-top: 1px solid var(--line);
+}
+.product-modal-row:first-of-type{ border-top:none; }
+.product-modal-row span:first-child{ color: var(--muted); }
+.status-available{ color: #1a8f4c; font-weight:600; }
+.status-sold{ color: #c0392b; font-weight:600; }
+.product-modal-additional{ margin-bottom: 20px; }
+.product-modal-additional h4{ font-size: 1rem; margin-bottom: 8px; }
+.product-modal-additional ul{ margin:0; padding-left: 18px; color: var(--muted); font-size: 0.94rem; line-height:1.6; }
+.product-modal-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+gap: 8px;
+width:100%;
+padding: 14px;
+border-radius: 9px;
+font-weight: 600;
+text-decoration:none;
+margin-bottom: 10px;
+font-size: 0.98rem;
+}
+.product-modal-btn.whatsapp{ background: var(--gold); color: var(--navy); }
+.product-modal-btn.whatsapp:hover{ background: var(--gold-dark); }
+.product-modal-btn.instagram{ border: 1.5px solid var(--black); color: var(--black); background:none; }
+.product-modal-btn.instagram:hover{ border-color: var(--gold-dark); color: var(--gold-dark); }
+@media (max-width: 720px){
+.product-modal-grid{ grid-template-columns: 1fr; }
+.product-modal{ padding: 22px; margin: 16px auto; }
+}
+
+/* ---------- INSTAGRAM CTA ---------- */
+.insta-band{
+background: var(--navy);
+border-radius: 20px;
+padding: 48px 40px;
+text-align:center;
+}
+.insta-band h2{ color: var(--white); font-size: clamp(1.5rem, 2.6vw, 2rem); }
+.insta-band p{ color: var(--muted-onbox); margin-top: 10px; max-width: 50ch; margin-left:auto; margin-right:auto; }
+.insta-tiles{
+display:flex;
+justify-content:center;
+gap: 14px;
+margin: 28px 0;
+flex-wrap:wrap;
+}
+.insta-tile{
+width: 64px; height: 64px;
+border-radius: 12px;
+background: rgba(255,255,255,0.08);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.insta-tile svg{ width: 26px; height: 26px; color: var(--gold-onbox); }
+.insta-band .btn-primary{ display:inline-flex; }
 
 /* ---------- FAQ ---------- */
 .faq-list{ max-width: 74ch; }
@@ -857,6 +1043,26 @@ footer .foot-links a:hover{ color: var(--gold-dark); }
 <strong>Fair prices, both ways</strong>
 <p>We've been the person who overpaid for "mint condition" too, so that's not how we price things.</p>
 </div>
+<div class="trust-item">
+<strong>Still here after the sale</strong>
+<p>Got a question about setup or something isn't right? Message us &mdash; we don't disappear once you've paid.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="instagram">
+<div class="wrap">
+<div class="insta-band">
+<h2>Follow @reup_tech_za</h2>
+<p>New stock, prices, and behind-the-scenes drops before they land on the site.</p>
+<div class="insta-tiles">
+<div class="insta-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></div>
+<div class="insta-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></div>
+<div class="insta-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></div>
+<div class="insta-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></div>
+</div>
+<a class="btn btn-primary" href="https://www.instagram.com/reup_tech/?hl=en" target="_blank" rel="noopener">View Instagram</a>
 </div>
 </div>
 </section>
@@ -925,6 +1131,35 @@ footer .foot-links a:hover{ color: var(--gold-dark); }
 </div>
 </footer>
 
+<div class="product-modal-overlay" id="productModalOverlay">
+<div class="product-modal">
+<button class="product-modal-close" id="productModalClose" aria-label="Close">&times;</button>
+<div class="product-modal-grid">
+<div>
+<div class="product-modal-main-image" id="productModalMainImage"></div>
+<div class="product-modal-thumbs" id="productModalThumbs"></div>
+</div>
+<div class="product-modal-info">
+<h2 id="productModalName"></h2>
+<p class="product-modal-specs" id="productModalSpecs"></p>
+<div class="product-modal-pricebox">
+<div class="product-modal-price" id="productModalPrice"></div>
+<div class="product-modal-row"><span>Status:</span><span id="productModalStatus"></span></div>
+<div class="product-modal-row" id="productModalConditionRow"><span>Condition:</span><span id="productModalConditionScore"></span></div>
+<div class="product-modal-row"><span>Product ID:</span><span id="productModalId"></span></div>
+<div class="product-modal-row" id="productModalListedRow"><span>Listed:</span><span id="productModalListed"></span></div>
+</div>
+<div class="product-modal-additional" id="productModalAdditionalWrap" style="display:none;">
+<h4>Additional Info:</h4>
+<ul id="productModalAdditional"></ul>
+</div>
+<a class="product-modal-btn whatsapp" id="productModalWhatsApp" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+<a class="product-modal-btn instagram" href="https://www.instagram.com/reup_tech/?hl=en" target="_blank" rel="noopener">View on Instagram</a>
+</div>
+</div>
+</div>
+</div>
+
 <script>
 (function(){
 var track = document.getElementById('productSlider');
@@ -969,18 +1204,140 @@ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
 function fallbackIconSVG(){
 return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg>';
 }
+function badgeFor(p){
+if(p.status === 'Sold') return { text: 'Sold', sold: true };
+if(p.conditionScore) return { text: p.conditionScore, sold: false };
+if(p.condition && /new|sealed/i.test(p.condition)) return { text: 'New', sold: false };
+return { text: 'Preloved', sold: false };
+}
 function productCardHTML(p){
 var media = p.image ? '<img src="' + escapeHTML(p.image) + '" alt="' + escapeHTML(p.name) + '">' : fallbackIconSVG();
-return '<div class="product-card">' + media +
+var badge = badgeFor(p);
+var waMsg = encodeURIComponent('Hi, I\'m interested in the ' + (p.name || 'item') + ' listed for ' + (p.price || '') + '.');
+return '<div class="product-card" data-idx="' + p.__idx + '">' +
+'<span class="product-badge' + (badge.sold ? ' sold' : '') + '">' + escapeHTML(badge.text) + '</span>' +
+media +
 '<h3>' + escapeHTML(p.name) + '</h3>' +
 '<div class="price">' + escapeHTML(p.price) + '</div>' +
 '<div class="cond">' + escapeHTML(p.condition) + '</div>' +
+'<div class="product-card-actions">' +
+'<button class="pc-view" type="button">View</button>' +
+'<a class="pc-enquire" href="https://wa.me/27608767629?text=' + waMsg + '" target="_blank" rel="noopener">Enquire</a>' +
+'</div>' +
 '</div>';
 }
+
+/* ---- Product detail modal ---- */
+window.__reupProducts = [];
+function galleryImagesFor(p){
+var imgs = [];
+if(p.image) imgs.push(p.image);
+if(p.images && p.images.length){
+p.images.forEach(function(item){
+var src = (item && item.src) ? item.src : item;
+if(src) imgs.push(src);
+});
+}
+return imgs;
+}
+function setMainImage(src){
+var main = document.getElementById('productModalMainImage');
+main.innerHTML = src ? '<img src="' + escapeHTML(src) + '" alt="">' : fallbackIconSVG();
+}
+function openProductModal(p){
+if(!p) return;
+document.getElementById('productModalName').textContent = p.name || '';
+var specsEl = document.getElementById('productModalSpecs');
+specsEl.textContent = p.specs || '';
+specsEl.style.display = p.specs ? '' : 'none';
+document.getElementById('productModalPrice').textContent = p.price || '';
+
+var statusEl = document.getElementById('productModalStatus');
+var status = p.status || 'Available';
+statusEl.textContent = status;
+statusEl.className = status === 'Sold' ? 'status-sold' : 'status-available';
+
+var condRow = document.getElementById('productModalConditionRow');
+if(p.conditionScore){
+condRow.style.display = '';
+document.getElementById('productModalConditionScore').textContent = p.conditionScore;
+} else {
+condRow.style.display = 'none';
+}
+
+document.getElementById('productModalId').textContent = '#' + (p.productId || (p.__idx + 1));
+
+var listedRow = document.getElementById('productModalListedRow');
+if(p.dateListed){
+listedRow.style.display = '';
+var d = new Date(p.dateListed);
+document.getElementById('productModalListed').textContent = isNaN(d) ? p.dateListed : d.toLocaleDateString();
+} else {
+listedRow.style.display = 'none';
+}
+
+var addWrap = document.getElementById('productModalAdditionalWrap');
+var addList = document.getElementById('productModalAdditional');
+if(p.additionalInfo && p.additionalInfo.trim()){
+addWrap.style.display = '';
+addList.innerHTML = p.additionalInfo.split('\n').filter(function(l){ return l.trim(); })
+.map(function(l){ return '<li>' + escapeHTML(l.trim()) + '</li>'; }).join('');
+} else {
+addWrap.style.display = 'none';
+}
+
+var waMsg = encodeURIComponent('Hi, I\'m interested in the ' + (p.name || 'item') + ' listed for ' + (p.price || '') + '.');
+document.getElementById('productModalWhatsApp').href = 'https://wa.me/27608767629?text=' + waMsg;
+
+var imgs = galleryImagesFor(p);
+setMainImage(imgs[0]);
+var thumbs = document.getElementById('productModalThumbs');
+if(imgs.length > 1){
+thumbs.style.display = '';
+thumbs.innerHTML = imgs.map(function(src, i){
+return '<img src="' + escapeHTML(src) + '" class="' + (i === 0 ? 'active' : '') + '" data-src="' + escapeHTML(src) + '">';
+}).join('');
+} else {
+thumbs.style.display = 'none';
+thumbs.innerHTML = '';
+}
+
+document.getElementById('productModalOverlay').classList.add('open');
+document.body.style.overflow = 'hidden';
+}
+function closeProductModal(){
+document.getElementById('productModalOverlay').classList.remove('open');
+document.body.style.overflow = '';
+}
+document.addEventListener('click', function(e){
+if(e.target.closest('.pc-enquire')) return;
+var card = e.target.closest('.product-card');
+if(card){
+var idx = card.getAttribute('data-idx');
+openProductModal(window.__reupProducts[idx]);
+return;
+}
+var thumb = e.target.closest('.product-modal-thumbs img');
+if(thumb){
+setMainImage(thumb.getAttribute('data-src'));
+thumb.parentElement.querySelectorAll('img').forEach(function(t){ t.classList.remove('active'); });
+thumb.classList.add('active');
+return;
+}
+if(e.target.id === 'productModalClose' || e.target.id === 'productModalOverlay'){
+closeProductModal();
+}
+});
+document.addEventListener('keydown', function(e){
+if(e.key === 'Escape') closeProductModal();
+});
+
 fetch('/content/products.json', { cache: 'no-store' })
 .then(function(res){ return res.json(); })
 .then(function(data){
 var products = (data && data.products) || [];
+products.forEach(function(p, i){ p.__idx = i; });
+window.__reupProducts = products;
 
 var slider = document.getElementById('productSlider');
 if(slider){
