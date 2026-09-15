@@ -1,60 +1,37 @@
 {
   "products": [
     {
+      "price": "7500",
       "name": "iPhone 13, 128GB",
-      "price": "R8,999",
-      "category": "Apple",
-      "condition": "Preloved · battery 91%",
-      "image": "",
-      "featured": true
+      "featured": true,
+      "status": "Available",
+      "additionalInfo": "iPhone 13 Pro 128GB Graphite",
+      "conditionScore": "8.5",
+      "specs": "",
+      "condition": "Preowned · battery 91%",
+      "image": "/images/uploads/iphone-13.png",
+      "category": "Apple"
     },
     {
-      "name": "iPhone 15, 256GB",
       "price": "R15,999",
-      "category": "Apple",
-      "condition": "Preloved · battery 97%",
-      "image": "",
-      "featured": true
-    },
-    {
-      "name": "AirPods Pro 2",
-      "price": "R3,799",
-      "category": "Apple",
-      "condition": "New · sealed",
-      "image": "",
-      "featured": true
-    },
-    {
-      "name": "AirPods Max",
-      "price": "R7,299",
-      "category": "Apple",
-      "condition": "Preloved · case included",
-      "image": "",
-      "featured": false
-    },
-    {
-      "name": "Galaxy S23, 256GB",
-      "price": "R9,499",
-      "category": "Samsung",
-      "condition": "Preloved · battery 93%",
-      "image": "",
-      "featured": false
-    },
-    {
-      "name": "Galaxy A54",
-      "price": "R5,299",
-      "category": "Samsung",
-      "condition": "New · sealed",
-      "image": "",
-      "featured": false
+      "name": "iPhone 15, 256GB",
+      "featured": true,
+      "status": "Available",
+      "additionalInfo": "iPhone 15 Pro Max 256GB Black - Charger included - New glass screen protector fitted",
+      "conditionScore": "9.5",
+      "condition": "Preowned · battery 80%",
+      "image": "/images/uploads/iphone-15-pro-max.png",
+      "category": "Apple"
     },
     {
       "name": "PS5 Slim, Disc Edition 1Tb",
       "price": "R10000",
       "category": "PlayStations",
-      "condition": "Preloved",
+      "condition": "Preowned",
       "image": "/images/uploads/img_1854.png",
-      "featured": true
+      "featured": true,
+      "conditionScore": "9",
+      "status": "Available"
     },
     {
       "name": "PS4 Pro, 1TB Bundle",
@@ -65,44 +42,20 @@
       "featured": true
     },
     {
-      "name": "Xbox Series S",
-      "price": "R5,999",
-      "category": "Xbox",
-      "condition": "New · sealed",
-      "image": "",
-      "featured": false
-    },
-    {
-      "name": "Xbox Series X",
-      "price": "R8,499",
-      "category": "Xbox",
-      "condition": "Preloved · 1 controller",
-      "image": "",
-      "featured": false
-    },
-    {
-      "name": "Chargers & cables",
-      "price": "From R149",
-      "category": "Other",
-      "condition": "New · various brands",
-      "image": "",
-      "featured": false
-    },
-    {
-      "name": "Cases & screen protectors",
-      "price": "From R99",
-      "category": "Other",
-      "condition": "New · various models",
-      "image": "",
-      "featured": false
-    },
-    {
-      "featured": true,
-      "image": "/images/uploads/3.png",
-      "name": "Ps5 30th Anniversary",
       "price": "16000",
-      "category": "PlayStations",
-      "condition": "Preloved"
+      "name": "Ps5 30th Anniversary",
+      "featured": true,
+      "status": "Available",
+      "additionalInfo": "Used twice - Great condition - one controller",
+      "conditionScore": "9.5",
+      "images": [
+        "/images/uploads/5.png",
+        "/images/uploads/4.png",
+        "/images/uploads/6.png"
+      ],
+      "condition": "Preowned",
+      "image": "/images/uploads/3.png",
+      "category": "PlayStations"
     },
     {
       "featured": true,
@@ -110,15 +63,31 @@
       "name": "Iphone 14 pro",
       "category": "Apple",
       "condition": "Preloved, battery 87%",
-      "price": "8500"
+      "price": "8500",
+      "conditionScore": "9",
+      "status": "Sold"
     },
     {
-      "featured": false,
+      "featured": true,
       "image": "/images/uploads/white-background-product-photos-1-.png",
       "name": "Xbox series S, 1Tb",
       "price": "R6500",
       "category": "Xbox",
-      "condition": "Preloved "
+      "condition": "Preowned",
+      "conditionScore": "8",
+      "status": "Available"
+    },
+    {
+      "price": "10000",
+      "name": "Ps5 disc edition 1TB",
+      "featured": true,
+      "status": "Available",
+      "additionalInfo": "PS5 Disc Edition 1GB with Two Controllers",
+      "conditionScore": "9",
+      "specs": "Two controllers",
+      "condition": "Preowned",
+      "image": "/images/uploads/white-background-product-photos-3-.png",
+      "category": "PlayStations"
     }
   ]
 }
