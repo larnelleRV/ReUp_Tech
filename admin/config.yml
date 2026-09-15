@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: "larnelleRV/ReUp_Tech"
+  repo: "YOUR-GITHUB-USERNAME/reuptech-site"
   branch: main
 
 media_folder: "images/uploads"
@@ -19,12 +19,29 @@ collections:
             widget: "list"
             summary: "{{fields.name}} — {{fields.category}} — {{fields.price}}"
             fields:
-              - { label: "Photo", name: "image", widget: "image", required: false, hint: "Upload a product photo (optional — a placeholder icon shows if left blank)" }
+              - { label: "Photo (main)", name: "image", widget: "image", required: false, hint: "Main photo shown on cards and as the first gallery image" }
+              - label: "Extra gallery photos"
+                name: "images"
+                widget: "list"
+                required: false
+                hint: "Add up to 3 more photos (4 total including the main one). Click 'Add Photo' below for each one."
+                field: { label: "Photo", name: "src", widget: "image" }
               - { label: "Name", name: "name", widget: "string" }
+              - { label: "Specs / subtitle", name: "specs", widget: "string", required: false, hint: "e.g. 128GB · Green" }
               - { label: "Price", name: "price", widget: "string", hint: "e.g. R8,999" }
               - label: "Category"
                 name: "category"
                 widget: "select"
                 options: ["Apple", "Samsung", "PlayStations", "Xbox", "Other"]
               - { label: "Condition", name: "condition", widget: "string", hint: "e.g. Preloved · battery 91%" }
+              - { label: "Condition score (out of 10)", name: "conditionScore", widget: "string", required: false, hint: "e.g. 9.4" }
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["Available", "Sold"]
+                default: "Available"
+                required: false
+              - { label: "Product ID", name: "productId", widget: "string", required: false, hint: "Optional custom ID, e.g. 490 — leave blank to auto-number" }
+              - { label: "Date listed", name: "dateListed", widget: "date", required: false, hint: "Leave blank if you don't need this shown" }
+              - { label: "Additional info (one point per line)", name: "additionalInfo", widget: "text", required: false }
               - { label: "Show in New Products slider", name: "featured", widget: "boolean", default: false }
