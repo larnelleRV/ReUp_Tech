@@ -13,12 +13,13 @@
       "category": "Apple"
     },
     {
-      "price": "R15,999",
-      "name": "iPhone 15, 256GB",
+      "price": "R13000",
+      "name": "iPhone 15 Pro Max ",
       "featured": true,
       "status": "Available",
       "additionalInfo": "iPhone 15 Pro Max 256GB Black - Charger included - New glass screen protector fitted",
       "conditionScore": "9.5",
+      "specs": "256GB",
       "condition": "Preowned · battery 80%",
       "image": "/images/uploads/iphone-15-pro-max.png",
       "category": "Apple"
