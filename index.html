@@ -361,6 +361,7 @@ box-shadow: 0 16px 32px -18px rgba(0,0,0,0.5);
 .product-badge{
 position:absolute;
 top: 16px; right: 16px;
+z-index: 5;
 max-width: calc(100% - 32px);
 background: rgba(10,31,68,0.85);
 border: 1px solid rgba(255,255,255,0.25);
@@ -1178,10 +1179,8 @@ function fallbackIconSVG(){
 return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg>';
 }
 function badgeFor(p){
-if(p.status === 'Sold') return { text: 'Sold', sold: true };
-if(p.conditionScore) return { text: p.conditionScore, sold: false };
-if(p.condition && /new|sealed/i.test(p.condition)) return { text: 'New', sold: false };
-return { text: 'Preloved', sold: false };
+var status = p.status || 'Available';
+return { text: status, sold: status === 'Sold' };
 }
 function productCardHTML(p){
 var media = p.image ? '<img src="' + escapeHTML(p.image) + '" alt="' + escapeHTML(p.name) + '">' : fallbackIconSVG();
