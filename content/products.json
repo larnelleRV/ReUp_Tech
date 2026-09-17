@@ -44,7 +44,7 @@
     },
     {
       "price": "16000",
-      "name": "Ps5 30th Anniversary",
+      "name": "PS5 30th Anniversary",
       "featured": true,
       "status": "Sold",
       "additionalInfo": "Used twice - Great condition - one controller",
@@ -88,6 +88,21 @@
       "specs": "Two controllers",
       "condition": "Preowned",
       "image": "/images/uploads/white-background-product-photos-3-.png",
+      "category": "PlayStations"
+    },
+    {
+      "price": "9500",
+      "name": "PS5 Slim Edition ",
+      "featured": true,
+      "status": "Available",
+      "additionalInfo": "PS5 Slim Edition - Great condition - one controller - Power cable - HDMI cable",
+      "conditionScore": "9.5",
+      "specs": "1TB",
+      "images": [
+        "/images/uploads/ps5-slim.png"
+      ],
+      "condition": "Preowned",
+      "image": "/images/uploads/white-background-product-photos-6-.png",
       "category": "PlayStations"
     }
   ]
